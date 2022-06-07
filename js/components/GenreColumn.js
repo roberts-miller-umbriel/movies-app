@@ -1,13 +1,42 @@
+import { htmlToElement } from '../utils.js';
+import { TMDB_IMG_URL } from '../main.js';
+
 export const GenreColumn = (movies) => {
-    return movies.map(movie =>
-        MovieCard(movie.title, movie.director, movie.rating, movie.genre)
-    ).join();
+    const container = document.createElement('div');
+
+    //language=HTML
+    return htmlToElement(`
+        <div class="genre-container">
+                <!--<h1>${movies[0].genre}</h1>-->
+            <div class="genre-carousel">
+                ${
+
+                        movies.map(movie =>
+                                MovieCard({
+                                    title: movie.title,
+                                    posterUrl: `${TMDB_IMG_URL}/${movie.poster_path}`
+                                })
+                        ).join('')
+                }
+            </div>
+
+        </div>
+    `);
+
 
 };
 
 
-export const MovieCard = (title, director, rating, genre) => {
+export const MovieCard = ({ title, director, rating, genre, posterUrl }) => {
+    //language=HTML
     return `
-    
+        <div class="movie-card">
+            <img src="${posterUrl}" alt="${title}">
+            <h1>${title}</h1>
+            <div class="movie-edit-controls">
+
+            </div>
+
+        </div>
     `;
 };
