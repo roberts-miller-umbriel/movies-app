@@ -1,61 +1,130 @@
 *,
 *::before,
 *::after {
+	color: white;
 	margin: 0;
 	box-sizing: border-box;
 }
 
 body, html {
 	font-family: Arial, Helvetica, sans-serif;
-	background: dimgrey;
+	background: #1B0C01;
 }
 
-ul {
-	list-style-type: none;
-	padding: 0;
+.navbar {
 	overflow: hidden;
-	/*background-color: black;*/
-	background-image: url("/img/moviebackground.jpg");
-	height: 100px;
-}
-
-li {
-	float: left;
-}
-
-li a {
-	display: block;
-	color: white;
-	align-content: center;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	font-size: 20px;
-	text-shadow: black 4px 4px 4px;
-}
-
-li a:hover {
-	background-color: gray;
-}
-
-.topnav input[type=text] {
-	float: right;
-	padding: 6px;
-	margin-top: 8px;
-	margin-right: 16px;
-	border: none;
-	font-size: 17px;
-}
-
-.container {
-
-}
-
-.genre-title {
 	display: flex;
-	color: #eeeeee;
-	margin-left: 10px;
-	margin-bottom: 1em;
+	padding: 1rem;
+	background-image: url("/img/Film-Header.jpg");
+	background-position: center;
+	height: 200px;
+}
+
+.navbar a {
+	float: left;
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	/*padding: 14px 16px;*/
+	text-decoration: none;
+}
+
+nav > * {
+	margin-right: 10px;
+}
+
+.dropdown {
+	/*float: left;*/
+
+	overflow: hidden;
+}
+
+.dropdown .dropbtn {
+	font-size: 20px;
+	border: none;
+	outline: none;
+	color: white;
+	/*padding: 14px 16px;*/
+	background-color: inherit;
+	font-family: inherit;
+	margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+	text-shadow: 5px 5px 5px #EE9501;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	min-width: 120px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	float: none;
+	color: white;
+	padding: 3px 8px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.twitterIcon {
+	float: right;
+}
+
+.igIcon {
+	float: right;
+}
+
+#movie-search {
+	display: flex;
+	align-items: center;
+	height: 5vh;
+	margin-left: auto;
+
+}
+
+/* Style the search field */
+#movie-search input[type=text] {
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid grey;
+	width: 25vw;
+	background: #f1f1f1;
+	/*margin-right: 1em;*/
+}
+
+/* Style the submit button */
+#movie-search button {
+	width: 15%;
+	padding: 10px;
+	background: #290E01;
+	color: white;
+	font-size: 14px;
+	border: 1px solid grey;
+	border-left: none; /* Prevent double borders */
+	cursor: pointer;
+}
+
+#movie-search button:hover {
+	background: #BE4900;
+}
+
+/* Clear floats */
+#movie-search::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+.movie-card {
 }
 
 .genre-container {
@@ -78,6 +147,11 @@ li a:hover {
 
 	object-fit: cover !important;
 	object-position: center;
+}
+
+.movie-card h1 {
+	font-size: 1rem;
+	width: 5em;
 }
 
 

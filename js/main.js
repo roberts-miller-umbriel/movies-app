@@ -1,24 +1,26 @@
 import { GenreColumn } from './components/GenreColumn.js';
 import { MOVIE_DB_API_KEY } from './keys.js';
 
+export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
+
 
 (() => {
     const MOVIE_API_URL = 'https://tricky-excessive-booklet.glitch.me/movies';
     const TMDB_API_URL = 'https://api.themoviedb.org/3';
 
     function getMovieData() {
-        return fetch(MOVIE_API_URL, {
-            method: 'GET'
-        })
-            .then(res => res.json())
-            .then(movieData => movieData)
-            .catch(error => console.error(error));
-        // return fetch(`${TMDB_API_URL}/movie/popular?api_key=${MOVIE_DB_API_KEY}`, {
-        //     method: 'GET',
+        // return fetch(MOVIE_API_URL, {
+        //     method: 'GET'
         // })
         //     .then(res => res.json())
-        //     .then(data => data.results)
+        //     .then(movieData => movieData)
         //     .catch(error => console.error(error));
+        return fetch(`${TMDB_API_URL}/movie/popular?api_key=${MOVIE_DB_API_KEY}`, {
+            method: 'GET',
+        })
+            .then(res => res.json())
+            .then(data => data.results)
+            .catch(error => console.error(error));
 
     }
 
@@ -64,17 +66,20 @@ import { MOVIE_DB_API_KEY } from './keys.js';
     getMovieData().then(movies => {
         console.log(movies);
         const moviesContainer = document.querySelector('#movies-container');
-        const uniqueGenres = movies
-            .map(movie => movie.genre)
-            .reduce((acc, curr) => {
-                if (!acc.includes(curr)) return [...acc, curr];
-                else return acc;
-            }, []);
+        moviesContainer.appendChild(GenreColumn(movies));
+        console.log(movies);
 
-        for (const genre of uniqueGenres) {
-            const moviesWithGenre = movies.filter(movie => movie.genre === genre);
-            moviesContainer.appendChild(GenreColumn(moviesWithGenre));
-        }
+        // const uniqueGenres = movies
+        //     .map(movie => movie.genre)
+        //     .reduce((acc, curr) => {
+        //         if (!acc.includes(curr)) return [...acc, curr];
+        //         else return acc;
+        //     }, []);
+        //
+        // for (const genre of uniqueGenres) {
+        //     const moviesWithGenre = movies.filter(movie => movie.genre === genre);
+        //     moviesContainer.appendChild(GenreColumn(moviesWithGenre));
+        // }
 
 
         const genreContainers = document.querySelectorAll('.genre-carousel');
