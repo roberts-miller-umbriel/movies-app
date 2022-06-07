@@ -1,8 +1,10 @@
 import { GenreColumn } from './components/GenreColumn.js';
+import { MOVIE_DB_API_KEY } from './keys.js';
 
 
 (() => {
     const MOVIE_API_URL = 'https://tricky-excessive-booklet.glitch.me/movies';
+    const TMDB_API_URL = 'https://api.themoviedb.org/3';
 
     function getMovieData() {
         return fetch(MOVIE_API_URL, {
@@ -11,6 +13,13 @@ import { GenreColumn } from './components/GenreColumn.js';
             .then(res => res.json())
             .then(movieData => movieData)
             .catch(error => console.error(error));
+        // return fetch(`${TMDB_API_URL}/movie/popular?api_key=${MOVIE_DB_API_KEY}`, {
+        //     method: 'GET',
+        // })
+        //     .then(res => res.json())
+        //     .then(data => data.results)
+        //     .catch(error => console.error(error));
+
     }
 
     function addMovie({ title, director, rating, genre }) {
@@ -53,16 +62,33 @@ import { GenreColumn } from './components/GenreColumn.js';
     }
 
     getMovieData().then(movies => {
-        document.querySelector('#movies-container').appendChild(GenreColumn(movies));
-        const genre = document.querySelector('.genre-container');
-        new Flickity(genre, {
-            wrapAround: true,
-            // adaptiveHeight: true,
-            // setGallerySize: false,
-            pageDots: false,
-            cellAlign: 'left',
-            contain: true
-        });
+        console.log(movies);
+        const moviesContainer = document.querySelector('#movies-container');
+        const uniqueGenres = movies
+            .map(movie => movie.genre)
+            .reduce((acc, curr) => {
+                if (!acc.includes(curr)) return [...acc, curr];
+                else return acc;
+            }, []);
+
+        for (const genre of uniqueGenres) {
+            const moviesWithGenre = movies.filter(movie => movie.genre === genre);
+            moviesContainer.appendChild(GenreColumn(moviesWithGenre));
+        }
+
+
+        const genreContainers = document.querySelectorAll('.genre-carousel');
+        for (const genreContainer of genreContainers) {
+            new Flickity(genreContainer, {
+                wrapAround: true,
+                // adaptiveHeight: true,
+                // setGallerySize: false,
+                pageDots: false,
+                cellAlign: 'left',
+                contain: true
+            });
+
+        }
 
 
     });

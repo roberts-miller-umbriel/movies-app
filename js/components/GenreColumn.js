@@ -6,12 +6,16 @@ export const GenreColumn = (movies) => {
     //language=HTML
     return htmlToElement(`
         <div class="genre-container">
-            ${
+            <h1>${movies[0].genre}</h1>
+            <div class="genre-carousel">
+                ${
 
-                    movies.map(movie =>
-                            MovieCard(movie.title, movie.director, movie.rating, movie.genre)
-                    ).join('')
-            }
+                        movies.map(movie =>
+                                MovieCard(movie.title, movie.director, movie.rating, movie.genre)
+                        ).join('')
+                }
+            </div>
+
         </div>
     `);
 
@@ -20,7 +24,6 @@ export const GenreColumn = (movies) => {
 
 
 export const MovieCard = (title, director, rating, genre) => {
-    console.log(title);
     //language=HTML
     return `
         <div class="movie-card">
