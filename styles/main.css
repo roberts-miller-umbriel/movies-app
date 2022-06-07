@@ -60,15 +60,24 @@ li a:hover {
 
 .genre-container {
 
+
 }
 
 .movie-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin-right: 1rem;
 
 }
 
+
 .movie-card img {
-	object-fit: cover;
+	width: 9vmax;
+	height: 16vmax;
+
+	object-fit: cover !important;
+	object-position: center;
 }
 
 
