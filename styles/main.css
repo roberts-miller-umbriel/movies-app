@@ -39,46 +39,36 @@ li a:hover {
 }
 
 .topnav input[type=text] {
-    float: right;
-    padding: 6px;
-    margin-top: 8px;
-    margin-right: 16px;
-    border: none;
-    font-size: 17px;
+	float: right;
+	padding: 6px;
+	margin-top: 8px;
+	margin-right: 16px;
+	border: none;
+	font-size: 17px;
 }
 
-.container{
+.container {
 
 }
 
-.genre-title{
+.genre-title {
 	display: flex;
 	color: #eeeeee;
 	margin-left: 10px;
 	margin-bottom: 1em;
 }
 
-.movie-posters {
-	display: flex;
-	margin: 0 5px;
-	border: 1px solid #eee;
-	padding: 10px;
-	border-radius: 10px;
-	background: rgba(6,2,2,0.5);
-	height: 13em;
+.genre-container {
+
 }
 
-.movie-poster{
-	display: flex;
-	border: 1px solid #eee;
-	background: rgba(6,2,2,0.4);
-	padding: 10px;
-	position: fixed;
-	width: 100%;
-	align-items: center;
-	justify-content: space-evenly;
-	height: 16em;
-	border-radius: 10px;
+.movie-card {
+	margin-right: 1rem;
+
+}
+
+.movie-card img {
+	object-fit: cover;
 }
 
 

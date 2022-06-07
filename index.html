@@ -1,40 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Movies App</title>
-    <link rel="stylesheet" href="./styles/main.css">
-</head>
-<nav>
-    <div class="topnav">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#insert">Insert a Movie</a></li>
-            <li><a href="#genres">Genres</a></li>
-            <input type="text" placeholder="Search..">
-        </ul>
+    <head>
+        <meta charset="UTF-8">
+        <title>Movies App</title>
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+        <link rel="stylesheet" href="./styles/main.css">
+    </head>
+    <nav>
+        <div class="topnav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#insert">Insert a Movie</a></li>
+                <li><a href="#genres">Genres</a></li>
+                <input type="text" placeholder="Search..">
+            </ul>
 
-    </div>
-</nav>
-<br>
-<body>
-<div class="container">
+        </div>
+    </nav>
+    <br>
+    <body>
+        <div class="container">
 
-</div>
-<div class="row">
-    <div class="genre-title">
-        <h2>TOP MOVIES</h2>
-    </div>
-    <div class="movie-poster">
-        <img src="img/cardbackground.jpg" alt="movie1" class="movie-posters">
-        <img src="img/cardbackground.jpg" alt="movie1" class="movie-posters">
-        <img src="img/cardbackground.jpg" alt="movie1" class="movie-posters">
-        <img src="img/cardbackground.jpg" alt="movie1" class="movie-posters">
-        <img src="img/cardbackground.jpg" alt="movie1" class="movie-posters">
-        <img src="img/cardbackground.jpg" alt="movie1" class="movie-posters">
-    </div>
-</div>
-<script src="./js/main.js" type="module"></script>
+        </div>
+        <div class="row">
+            <div class="genre-title">
+                <h2>TOP MOVIES</h2>
+            </div>
+            <div data-flickity='{"contain": true, "pageDots": false}' class="genre-container">
+                <div class="movie-card">
+                    <img src="img/cardbackground.jpg" alt="movie1">
+                </div>
+                <div class="movie-card">
+                    <img src="img/cardbackground.jpg" alt="movie1">
+                </div>
+                <div class="movie-card">
+                    <img src="img/cardbackground.jpg" alt="movie1">
+                </div>
+                <div class="movie-card">
+                    <img src="img/cardbackground.jpg" alt="movie1">
+                </div>
+                <div class="movie-card">
+                    <img src="img/cardbackground.jpg" alt="movie1">
+                </div>
+                <div class="movie-card">
+                    <img src="img/cardbackground.jpg" alt="movie1">
+                </div>
+                <div class="movie-card">
+                    <img src="img/cardbackground.jpg" alt="movie1">
+                </div>
+                <div class="movie-card">
+                    <img src="img/cardbackground.jpg" alt="movie1">
+                </div>
+                <div class="movie-card">
+                    <img src="img/cardbackground.jpg" alt="movie1">
+                </div>
 
-</body>
+            </div>
+        </div>
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+        <script src="./js/main.js" type="module"></script>
+
+    </body>
 </html>
