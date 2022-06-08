@@ -4,6 +4,24 @@ import { SearchModal } from './components/SearchModal.js';
 import { animate } from './utils.js';
 
 export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
+export const changeSearchModal = (movie) => {
+    const modal = document.querySelector('#search-modal');
+    const newModal = SearchModal(movie);
+    document.querySelector('body').style.overflow = 'hidden';
+    modal.replaceWith(newModal);
+    
+
+    newModal.querySelector('.close-btn')
+        .addEventListener('click', () => {
+            document.querySelector('body').style.overflow = 'unset';
+            closeSearchModal();
+        });
+};
+
+export const closeSearchModal = () => {
+    const modal = document.querySelector('#search-modal');
+    animate(modal, { opacity: 0, visibility: 'hidden' }, 500);
+};
 
 
 (() => {
@@ -42,6 +60,12 @@ export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
             })
             .catch(error => console.error(error));
 
+    }
+
+    function getMovieById(id) {
+        return fetch(`${TMDB_API_URL}/movie/${id}?api_key=${MOVIE_DB_API_KEY}`)
+            .then(res => res.json())
+            .then(data => data);
     }
 
 
@@ -86,14 +110,14 @@ export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
     }
 
     // Component Rendering
-    function renderMovieCarousel(movies, carouselLabel) {
+    const renderMovieCarousel = (movies, carouselLabel) => {
         const moviesContainer = document.querySelector('#movies-container');
         moviesContainer.appendChild(GenreColumn(movies, carouselLabel));
 
 
         const genreContainers = document.querySelectorAll('.genre-carousel');
         for (const genreContainer of genreContainers) {
-            new Flickity(genreContainer, {
+            const flick = new Flickity(genreContainer, {
                 wrapAround: true,
                 // adaptiveHeight: true,
                 // setGallerySize: false,
@@ -101,14 +125,14 @@ export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
                 cellAlign: 'left',
                 contain: true
             });
-
+            flick.on('staticClick', (event, pointer, cellElement) => {
+                getMovieById(cellElement.getAttribute('data-movie-id'))
+                    .then(movie => {
+                        changeSearchModal(movie);
+                    });
+            });
         }
-    }
-
-    function changeSearchModal(movie) {
-        const modal = document.querySelector('#search-modal');
-        modal.replaceWith(SearchModal(movie));
-    }
+    };
 
 
     getPopularMovies().then(movies => {
@@ -126,12 +150,11 @@ export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
             const text = form.querySelector('input[type="text"]').value;
             searchMovie(text)
                 .then(results => {
+
                     changeSearchModal(results);
-                    animate(searchModal, { opacity: 1, visibility: 'visible' }, 1000);
                 });
 
         });
-    const searchModal = document.querySelector('#search-modal');
-    animate(searchModal, { opacity: 0, visibility: 'hidden' }, 1000);
+
 
 })();

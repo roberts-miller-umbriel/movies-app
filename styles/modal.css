@@ -1,41 +1,65 @@
-#search-modal{
-    background: #1B0C01;
-    position: absolute;
-    inset: 0;
-    display: flex;
+#search-modal {
+	position: fixed;
+	inset: 0;
+	backdrop-filter: blur(10px);
+	animation: fadeIn 500ms;
 }
 
-#search-modal .info{
-    height: 100%;
-    width: 50%;
-    background-image: url("/img/Film-Header.jpg");
+#search-modal .container {
+	background: #1B0C01;
+	position: absolute;
+	inset: 10%;
+	display: flex;
+}
+
+#search-modal .close-btn {
+
+	position: absolute;
+	z-index: 5;
+	right: 0;
+	top: 0;
+	border: none;
+	background-color: #333;
+	color: white;
+	padding: 1rem;
+	cursor: pointer;
+	transition: all 500ms;
+}
+
+#search-modal .close-btn:hover {
+	background-color: #BE4900;
+
+}
+
+#search-modal .info {
+	height: 100%;
+	width: 40%;
+	background-image: url("/img/Film-Header.jpg");
 
 }
 
 #search-modal .info h1 {
-    font-family: 'Spline Sans', sans-serif;
-    font-size: 80px;
-    text-align: center;
-    padding: 7px;
+	font-family: 'Spline Sans', sans-serif;
+	max-font-size: 10rem;
+	text-align: center;
+	padding: 7px;
 }
 
 
-#search-modal .info p{
-    font-style: italic;
-    padding: 20px;
-    line-height: 30px;
-    font-size: 18px;
+#search-modal .info p {
+	font-style: italic;
+	padding: 20px;
+	font-size: 18px;
 }
 
 #search-modal .info h3, h4 {
-    padding: 15px;
+	padding: 15px;
 }
 
-#search-modal .poster{
-    height: 100%;
-    width: 50%;
-    background-image: url("/img/stepBrotehrs2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+#search-modal .poster {
+	height: 100%;
+	width: 60%;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 

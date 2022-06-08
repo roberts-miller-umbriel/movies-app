@@ -1,5 +1,5 @@
 import { htmlToElement } from '../utils.js';
-import { TMDB_IMG_URL } from '../main.js';
+import { changeSearchModal, TMDB_IMG_URL } from '../main.js';
 
 export const GenreColumn = (movies, label) => {
     const container = document.createElement('div');
@@ -12,10 +12,7 @@ export const GenreColumn = (movies, label) => {
                 ${
 
                         movies.map(movie =>
-                                MovieCard({
-                                    title: movie.title,
-                                    posterUrl: `${TMDB_IMG_URL}/${movie.poster_path}`
-                                })
+                                MovieCard(movie).outerHTML
                         ).join('')
                 }
             </div>
@@ -27,16 +24,19 @@ export const GenreColumn = (movies, label) => {
 };
 
 
-export const MovieCard = ({ title, director, rating, genre, posterUrl }) => {
-    //language=HTML
-    return `
-        <div class="movie-card">
-            <img src="${posterUrl}" alt="${title}">
-            <h1>${title}</h1>
+export const MovieCard = (movie) => {
+    const card = htmlToElement(`
+        <div class="movie-card" data-movie-id="${movie.id}">
+            <img src="${TMDB_IMG_URL}/${movie.poster_path}" alt="${movie.title}">
+            <h1>${movie.title}</h1>
             <div class="movie-edit-controls">
 
             </div>
-
         </div>
-    `;
+    `);
+    card.addEventListener('click', () => {
+        changeSearchModal(movie);
+    });
+    //language=HTML
+    return card;
 };
