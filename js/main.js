@@ -1,5 +1,7 @@
 import { GenreColumn } from './components/GenreColumn.js';
 import { MOVIE_DB_API_KEY } from './keys.js';
+import { SearchModal } from './components/SearchModal.js';
+import { animate } from './utils.js';
 
 export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
 
@@ -8,6 +10,7 @@ export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
     const MOVIE_API_URL = 'https://tricky-excessive-booklet.glitch.me/movies';
     const TMDB_API_URL = 'https://api.themoviedb.org/3';
 
+    // TMDB API Functionality
     function getPopularMovies() {
         return fetch(`${TMDB_API_URL}/movie/popular?api_key=${MOVIE_DB_API_KEY}`, {
             method: 'GET',
@@ -27,16 +30,22 @@ export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
             .catch(error => console.error(error));
     }
 
-    function movieSearch(title) {
+    function searchMovie(title) {
         return fetch(`${TMDB_API_URL}/search/movie/?query=${encodeURIComponent(title)}&api_key=${MOVIE_DB_API_KEY}`, {
             method: 'GET',
         })
             .then(res => res.json())
-            .then(data => data.results)
+            .then(data => {
+                return fetch(`${TMDB_API_URL}/movie/${data.results[0].id}?api_key=${MOVIE_DB_API_KEY}`)
+                    .then(res => res.json())
+                    .then(movieData => movieData);
+            })
             .catch(error => console.error(error));
 
     }
 
+
+    // Custom Movie Functionality
     function addCustomMovie({ title, director, rating, genre }) {
         return fetch(MOVIE_API_URL, {
             method: 'POST',
@@ -76,6 +85,7 @@ export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
 
     }
 
+    // Component Rendering
     function renderMovieCarousel(movies, carouselLabel) {
         const moviesContainer = document.querySelector('#movies-container');
         moviesContainer.appendChild(GenreColumn(movies, carouselLabel));
@@ -95,6 +105,11 @@ export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
         }
     }
 
+    function changeSearchModal(movie) {
+        const modal = document.querySelector('#search-modal');
+        modal.replaceWith(SearchModal(movie));
+    }
+
 
     getPopularMovies().then(movies => {
         renderMovieCarousel(movies, 'Popular');
@@ -109,11 +124,14 @@ export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
             e.preventDefault();
             const form = e.target;
             const text = form.querySelector('input[type="text"]').value;
-            movieSearch(text)
+            searchMovie(text)
                 .then(results => {
-                    console.log(results);
+                    changeSearchModal(results);
+                    animate(searchModal, { opacity: 1, visibility: 'visible' }, 1000);
                 });
 
         });
+    const searchModal = document.querySelector('#search-modal');
+    animate(searchModal, { opacity: 0, visibility: 'hidden' }, 1000);
 
 })();
