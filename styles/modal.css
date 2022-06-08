@@ -1,0 +1,41 @@
+#search-modal{
+    background: #1B0C01;
+    position: absolute;
+    inset: 0;
+    display: flex;
+}
+
+#search-modal .info{
+    height: 100%;
+    width: 50%;
+    background-image: url("/img/Film-Header.jpg");
+
+}
+
+#search-modal .info h1 {
+    font-family: 'Spline Sans', sans-serif;
+    font-size: 80px;
+    text-align: center;
+    padding: 7px;
+}
+
+
+#search-modal .info p{
+    font-style: italic;
+    padding: 20px;
+    line-height: 30px;
+    font-size: 18px;
+}
+
+#search-modal .info h3, h4 {
+    padding: 15px;
+}
+
+#search-modal .poster{
+    height: 100%;
+    width: 50%;
+    background-image: url("/img/stepBrotehrs2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

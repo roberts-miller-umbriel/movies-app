@@ -1,3 +1,5 @@
+@import "modal.css";
+
 *,
 *::before,
 *::after {
@@ -9,20 +11,6 @@
 body, html {
 	font-family: Arial, Helvetica, sans-serif;
 	background: #1B0C01;
-}
-
-.titleOfPage {
-	font-family: 'Nanum Myeongjo', serif;
-	font-size: 36px;
-	text-shadow: black 8px 8px 8px;
-	display: flex;
-	margin-left: auto;
-}
-
-.genre-title h2 {
-	margin-top: 1em;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 18px;
 }
 
 .navbar {
@@ -43,12 +31,10 @@ body, html {
 }
 
 nav > * {
-	margin-right: 20px;
+	margin-right: 10px;
 }
 
 .dropdown {
-	/*float: left;*/
-
 	overflow: hidden;
 }
 
@@ -57,7 +43,6 @@ nav > * {
 	border: none;
 	outline: none;
 	color: white;
-	/*padding: 14px 16px;*/
 	background-color: inherit;
 	font-family: inherit;
 	margin: 0;
@@ -96,7 +81,6 @@ nav > * {
 	float: right;
 }
 
-
 #movie-search {
 	display: flex;
 	align-items: center;
@@ -112,14 +96,14 @@ nav > * {
 	border: 1px solid grey;
 	width: 25vw;
 	background: #f1f1f1;
-	/*margin-right: 1em;*/
+
 }
 
 /* Style the submit button */
 #movie-search button {
 	width: 15%;
 	padding: 10px;
-	background: #BE4900;
+	background: #290E01;
 	color: white;
 	font-size: 14px;
 	border: 1px solid grey;
@@ -128,7 +112,7 @@ nav > * {
 }
 
 #movie-search button:hover {
-	background: #290E01;
+	background: #BE4900;
 }
 
 /* Clear floats */
@@ -151,11 +135,14 @@ nav > * {
 	flex-direction: column;
 	align-items: center;
 	margin-right: 1rem;
+
 }
+
 
 .movie-card img {
 	width: 9vmax;
 	height: 16vmax;
+
 	object-fit: cover !important;
 	object-position: center;
 }
