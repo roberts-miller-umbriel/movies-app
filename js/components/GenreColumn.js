@@ -1,13 +1,13 @@
 import { htmlToElement } from '../utils.js';
 import { TMDB_IMG_URL } from '../main.js';
 
-export const GenreColumn = (movies) => {
+export const GenreColumn = (movies, label) => {
     const container = document.createElement('div');
 
     //language=HTML
     return htmlToElement(`
         <div class="genre-container">
-                <!--<h1>${movies[0].genre}</h1>-->
+            <h1>${label}</h1>
             <div class="genre-carousel">
                 ${
 
