@@ -3,6 +3,7 @@ import { MOVIE_DB_API_KEY } from './keys.js';
 import { SearchModal } from './components/SearchModal.js';
 import { animate, capitalizeString } from './utils.js';
 import { GENRES } from './consts.js';
+import { TMDB } from './api.js';
 
 export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
 export const TMDB_API_URL = 'https://api.themoviedb.org/3';
@@ -33,51 +34,7 @@ export const getMovieById = (id) => {
 };
 
 (() => {
-
-    // TMDB API Functionality
-    function getPopularMovies() {
-        return fetch(`${TMDB_API_URL}/movie/popular?api_key=${MOVIE_DB_API_KEY}`, {
-            method: 'GET',
-        })
-            .then(res => res.json())
-            .then(data => data.results)
-            .catch(error => console.error(error));
-
-    }
-
-    function getNowPlayingMovies() {
-        return fetch(`${TMDB_API_URL}/movie/now_playing?api_key=${MOVIE_DB_API_KEY}`, {
-            method: 'GET',
-        })
-            .then(res => res.json())
-            .then(data => data.results)
-            .catch(error => console.error(error));
-    }
-
-    function getMoviesByGenre(genreName) {
-        const genre = GENRES.filter(genre => genre.name.toLowerCase() === genreName.toLowerCase())[0];
-        return fetch(`${TMDB_API_URL}/discover/movie?with_genres=${genre.id}&api_key=${MOVIE_DB_API_KEY}`)
-            .then(res => res.json())
-            .then(data => data.results)
-            .catch(error => console.error(error));
-    }
-
-
-    function searchMovie(title) {
-        return fetch(`${TMDB_API_URL}/search/movie/?query=${encodeURIComponent(title)}&api_key=${MOVIE_DB_API_KEY}`, {
-            method: 'GET',
-        })
-            .then(res => res.json())
-            .then(data => {
-                return fetch(`${TMDB_API_URL}/movie/${data.results[0].id}?api_key=${MOVIE_DB_API_KEY}`)
-                    .then(res => res.json())
-                    .then(movieData => movieData);
-            })
-            .catch(error => console.error(error));
-
-    }
-
-
+    
     // Component Rendering
     const renderMovieCarousel = (movies, carouselLabel) => {
         const moviesContainer = document.querySelector('#movies-container');
@@ -104,12 +61,12 @@ export const getMovieById = (id) => {
     };
 
 
-    getPopularMovies()
+    TMDB.getPopularMovies()
         .then(movies => renderMovieCarousel(movies, 'Popular'))
         .then(() => {
-            const genresToList = ['crime', 'animation', 'adventure'];
+            const genresToList = ['horror', 'animation', 'adventure'];
             for (const genre of genresToList) {
-                getMoviesByGenre(genre)
+                TMDB.getMoviesByGenre(genre)
                     .then(movies => renderMovieCarousel(movies, genre));
             }
         })
@@ -123,7 +80,7 @@ export const getMovieById = (id) => {
             e.preventDefault();
             const form = e.target;
             const text = form.querySelector('input[type="text"]').value;
-            searchMovie(text)
+            TMDB.searchMovie(text)
                 .then(results => {
 
                     changeSearchModal(results);

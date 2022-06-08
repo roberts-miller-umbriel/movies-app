@@ -10,7 +10,7 @@
 }
 
 .main-title {
-	font-family: 'Italiana', serif ;
+	font-family: 'Italiana', serif;
 	font-weight: normal;
 	position: absolute;
 	text-align: center;
@@ -155,12 +155,13 @@ nav > * {
 	flex-direction: column;
 	align-items: center;
 	margin-right: 1rem;
+	width: 10vmax;
+
 
 }
 
 
 .movie-card img {
-	width: 9vmax;
 	height: 16vmax;
 
 	object-fit: cover !important;
@@ -169,7 +170,7 @@ nav > * {
 
 .movie-card h1 {
 	font-size: 1rem;
-	max-width: 9vmax;
+	max-width: 100%;
 }
 
 .hidden {
@@ -177,3 +178,12 @@ nav > * {
 }
 
 
+@media screen and (max-width: 786px) {
+	.movie-card {
+		width: 20vmax;
+	}
+
+	.movie-card img {
+		width: 100%;
+	}
+}
