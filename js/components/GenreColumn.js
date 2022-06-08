@@ -30,7 +30,9 @@ export const MovieCard = (movie) => {
             <img src="${TMDB_IMG_URL}/${movie.poster_path}" alt="${movie.title}">
             <h1>${movie.title}</h1>
             <div class="movie-edit-controls">
-
+                <i class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-pen-to-square"></i>
             </div>
         </div>
     `);
