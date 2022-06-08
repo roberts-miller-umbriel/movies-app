@@ -1,7 +1,7 @@
 import { GenreColumn } from './components/GenreColumn.js';
 import { MOVIE_DB_API_KEY } from './keys.js';
 import { SearchModal } from './components/SearchModal.js';
-import { animate } from './utils.js';
+import { animate, capitalizeString } from './utils.js';
 import { GENRES } from './consts.js';
 
 export const TMDB_IMG_URL = 'https://image.tmdb.org/t/p/original';
@@ -55,15 +55,12 @@ export const getMovieById = (id) => {
     }
 
     function getMoviesByGenre(genreName) {
-        const genreId = GENRES.filter(genre => genre.name.toLowerCase() === genreName.toLowerCase())[0];
-        return fetch(`${TMDB_API_URL}/discover/movie?with_genres=${genreId}&api_key=${MOVIE_DB_API_KEY}`)
+        const genre = GENRES.filter(genre => genre.name.toLowerCase() === genreName.toLowerCase())[0];
+        return fetch(`${TMDB_API_URL}/discover/movie?with_genres=${genre.id}&api_key=${MOVIE_DB_API_KEY}`)
             .then(res => res.json())
             .then(data => data.results)
             .catch(error => console.error(error));
     }
-
-    getMoviesByGenre('action')
-        .then(movies => console.log(movies));
 
 
     function searchMovie(title) {
@@ -84,7 +81,7 @@ export const getMovieById = (id) => {
     // Component Rendering
     const renderMovieCarousel = (movies, carouselLabel) => {
         const moviesContainer = document.querySelector('#movies-container');
-        moviesContainer.appendChild(GenreColumn(movies, carouselLabel));
+        moviesContainer.appendChild(GenreColumn(movies, capitalizeString(carouselLabel)));
 
 
         const genreContainers = document.querySelectorAll('.genre-carousel');
@@ -107,12 +104,18 @@ export const getMovieById = (id) => {
     };
 
 
-    getPopularMovies().then(movies => {
-        renderMovieCarousel(movies, 'Popular');
-    });
-    getNowPlayingMovies().then(movies => {
-        renderMovieCarousel(movies, 'Now Playing');
-    });
+    getPopularMovies()
+        .then(movies => renderMovieCarousel(movies, 'Popular'))
+        .then(() => {
+            const genresToList = ['crime', 'animation', 'adventure'];
+            for (const genre of genresToList) {
+                getMoviesByGenre(genre)
+                    .then(movies => renderMovieCarousel(movies, genre));
+            }
+        })
+        .then(() => {
+
+        });
 
 
     document.querySelector('#movie-search')
