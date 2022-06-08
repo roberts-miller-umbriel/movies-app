@@ -14,6 +14,7 @@ const Nav = () => {
                     <a href="#">Documentary</a>
                 </div>
             </div>
+            <h1 class="main-title">The Movie Depot</h1>
             <form id="movie-search">
                 <input type="text" placeholder="Search.." name="search">
                 <button type="submit"><i class="fa fa-search"></i></button>
