@@ -11,14 +11,16 @@
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
     </head>
 
     <br>
     <body>
         <nav class="navbar">
             <a href="#home">Home</a>
-            <a href="#news">News</a>
+            <a href="#news">My Movie List</a>
             <div class="dropdown">
                 <button class="dropbtn">Genre
                     <i class="fa fa-caret-down"></i>
@@ -29,6 +31,9 @@
                     <a href="#">Documentary</a>
                 </div>
             </div>
+            <div class="titleOfPage">
+                <h1>The Movie Depot</h1>
+            </div>
             <form id="movie-search">
                 <input type="text" placeholder="Search.." name="search">
                 <button type="submit"><i class="fa fa-search"></i></button>
@@ -36,13 +41,12 @@
         </nav>
         <div class="row">
             <div class="genre-title">
-                <h2>TOP MOVIES</h2>
+                <h2>My Movie List</h2>
             </div>
             <div class="movie-poster" id="movies-container">
 
             </div>
         </div>
-
         <div id="search-modal">
             <div class="info">
 
@@ -53,6 +57,5 @@
             </div>
         </div>
         <script src="./js/main.js" type="module"></script>
-
     </body>
 </html>
