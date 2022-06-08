@@ -1,0 +1,18 @@
+#search-modal{
+    background: red;
+    position: absolute;
+    inset: 0;
+    display: flex;
+}
+
+#search-modal .info{
+    height: 100%;
+    width: 50%;
+
+}
+
+#search-modal .poster{
+    height: 100%;
+    width: 50%;
+
+}
