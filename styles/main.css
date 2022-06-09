@@ -104,9 +104,13 @@ nav > * {
 
 }
 
+input {
+	color: black;
+
+}
+
 /* Style the search field */
 #movie-search input[type=text] {
-	color: black;
 	padding: 10px;
 	font-size: 14px;
 	border: 1px solid grey;
@@ -125,21 +129,13 @@ nav > * {
 	border: 1px solid grey;
 	border-left: none; /* Prevent double borders */
 	cursor: pointer;
+	transition: all 500ms;
 }
 
 #movie-search button:hover {
 	background: #BE4900;
 }
 
-/* Clear floats */
-#movie-search::after {
-	content: "";
-	clear: both;
-	display: table;
-}
-
-.movie-card {
-}
 
 .genre-container h1 {
 	margin: .5rem 0;
@@ -151,11 +147,23 @@ nav > * {
 }
 
 .movie-card {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin-right: 1rem;
 	width: 10vmax;
+	top: 0;
+	transition: top 500ms ease;
+
+}
+
+.movie-card:hover {
+	cursor: pointer;
+}
+
+#movies-container .movie-card:hover {
+	top: 5px;
 
 
 }

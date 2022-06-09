@@ -1,5 +1,5 @@
 import { htmlToElement } from '../utils.js';
-import { TMDB_IMG_URL } from '../main.js';
+import { TMDB } from '../api.js';
 
 export const SearchModal = (movie) => {
 
@@ -13,7 +13,7 @@ export const SearchModal = (movie) => {
                     <h1>${movie.original_title}</h1>
                     <p>${movie.overview}</p>
                 </div>
-                <div class="poster" style="background-image: url('${TMDB_IMG_URL}/${movie.backdrop_path}')">
+                <div class="poster" style="background-image: url('${TMDB.IMG_URL}/${movie.backdrop_path}')">
 
                 </div>
             </div>
