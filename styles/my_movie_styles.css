@@ -4,28 +4,35 @@ h1 {
 
 #search-movie-container {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
-	width: 25%;
-	height: 15em;
+	justify-content: center;
+	width: 100%;
+	height: 5em;
 	background-image: url("/img/searchbackground.jpg");
 	margin-bottom: 1rem;
 }
 
 #search-movie-container h2 {
 	padding: 1em;
+	text-shadow: #1B0C01 3px 3px 3px;
 }
 
 #movie-query {
-	height: 3em;
+	height: 2.5rem;
 	width: 100%;
-	margin-bottom: 1em;
+		/*margin-bottom: 1em;*/
+}
+
+#search-movie-container form {
+	display: flex;
+	flex-direction: row;
+	width: 25%;
 }
 
 #add-movie-form .add-btn {
-	height: 3em;
+	height: 2.5rem;
 	width: 50%;
-	padding: 10px;
 	background: #290E01;
 	color: white;
 	font-size: 14px;

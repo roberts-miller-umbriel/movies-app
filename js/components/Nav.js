@@ -11,9 +11,9 @@ const Nav = () => {
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="#">Action</a>
-                    <a href="#">Romance</a>
-                    <a href="#">Documentary</a>
+                    <a href="#">Popular</a>
+                    <a href="#">Horror</a>
+                    <a href="#">Animation</a>
                 </div>
             </div>
             <h1 class="main-title">The Movie Depot</h1>
