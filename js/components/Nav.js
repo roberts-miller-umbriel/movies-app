@@ -1,5 +1,6 @@
 import { htmlToElement } from '../utils.js';
 
+// Reusable Nav Element
 const Nav = () => {
     //language=HTML
     return htmlToElement(`
@@ -25,5 +26,5 @@ const Nav = () => {
     `);
 };
 
-
+// Inject the Nav to the start of the body
 document.body.prepend(Nav());

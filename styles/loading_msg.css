@@ -1,0 +1,7 @@
+#loading-msg {
+	position: absolute;
+	background-image: url("/img/loading.gif");
+	background-repeat: no-repeat;
+	background-size: cover;
+	inset: 0;
+}
