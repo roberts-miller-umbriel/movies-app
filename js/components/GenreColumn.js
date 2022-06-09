@@ -2,6 +2,7 @@ import { htmlToElement } from '../utils.js';
 import { changeSearchModal } from '../components/SearchModal.js';
 import { CUSTOM_MOVIE_LIST, TMDB } from '../api.js';
 
+// Function that takes in an array of movies, and a label, then generates a DOM element
 export const GenreColumn = (movies, label) => {
     //language=HTML
     const container = htmlToElement(`
@@ -17,29 +18,29 @@ export const GenreColumn = (movies, label) => {
 
         </div>
     `);
+    // Element has to be injected first to be used with flickity. Janky fix :(
     document.body.appendChild(container);
 
+    // Create flickity instance on our carousel container
     const flick = new Flickity(container.querySelector('.genre-carousel'), {
         wrapAround: true,
         pageDots: false,
         cellAlign: 'left',
         contain: true
     });
+
+    // Register event listener on flickity to display modal when a movie is clicked
     flick.on('staticClick', (event, pointer, cellElement) => {
         TMDB.getMovieById(cellElement.getAttribute('data-movie-id'))
             .then(movie => {
                 changeSearchModal(movie);
             });
     });
-
-
-    //language=HTML
     return container;
-
-
 };
 
-
+// Function that takes in a movie object, a boolean for edit-ability and a customId reference to the JSON-Server object
+// Generates a DOM element and registers event listeners for the edit buttons, if they are enabled.
 export const MovieCard = (movie, editable = false, customId) => {
     //language=HTML
     const card = htmlToElement(`
@@ -52,15 +53,20 @@ export const MovieCard = (movie, editable = false, customId) => {
             </div>
         </div>
     `);
+    // Event listener for deleting the movie
     card.querySelector('.movie-edit-controls .delete-btn')
         .addEventListener('click', (e) => {
+            // Stops the click from registering on parent
             e.stopPropagation();
+
+            // Deletes the movie from json server
             CUSTOM_MOVIE_LIST.deleteMovie(customId)
                 .then(() => {
                     card.style.display = 'none';
                 })
                 .catch(e => console.error(e));
         });
+    // Event listener to change the modal when the card is clicked
     card.addEventListener('click', (e) => {
         changeSearchModal(movie);
     });

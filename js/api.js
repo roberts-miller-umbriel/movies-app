@@ -1,7 +1,7 @@
 import { MOVIE_DB_API_KEY } from './keys.js';
 import { GENRES } from './consts.js';
 
-
+// All api calls in functions for TMDB
 export const TMDB = {
     API_URL: 'https://api.themoviedb.org/3',
     IMG_URL: 'https://image.tmdb.org/t/p/original',
@@ -29,17 +29,17 @@ export const TMDB = {
                 return fetch(`${TMDB.API_URL}/movie/${data.results[0].id}?api_key=${MOVIE_DB_API_KEY}`)
                     .then(res => res.json())
                     .then(movieData => movieData);
-            })
-            .catch(error => console.error(error));
+            });
     },
     getMovieById: (id) => {
         return fetch(`${TMDB.API_URL}/movie/${id}?api_key=${MOVIE_DB_API_KEY}`)
             .then(res => res.json())
-            .then(data => data);
+            .then(data => data)
+            .catch(error => console.error(error));
     }
 };
 
-
+// All api calls in functions for Json-Server
 export const CUSTOM_MOVIE_LIST = {
     API_URL: 'https://utopian-enthusiastic-sloop.glitch.me/movies',
     deleteMovie: (id) => {
@@ -53,7 +53,7 @@ export const CUSTOM_MOVIE_LIST = {
             .then(movie => movie)
             .catch(error => console.error(error));
     },
-    addCustomMovie: ({ tmdbId, userRating }) => {
+    addMovie: ({ tmdbId, userRating }) => {
 
         return fetch(CUSTOM_MOVIE_LIST.API_URL, {
             method: 'POST',
@@ -66,7 +66,7 @@ export const CUSTOM_MOVIE_LIST = {
             .then(data => data)
             .catch(e => console.error(e));
     },
-    getCustomMovies: () => {
+    getMovies: () => {
         return fetch(CUSTOM_MOVIE_LIST.API_URL)
             .then(res => res.json())
             .then(movies => movies)

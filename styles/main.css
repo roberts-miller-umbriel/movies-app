@@ -1,5 +1,6 @@
 @import "modal.css";
 @import "my_movie_styles.css";
+@import "loading_msg.css";
 
 *,
 *::before,
