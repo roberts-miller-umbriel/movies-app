@@ -1,23 +1,20 @@
 import { Component } from './Component.js';
-import { MovieCard } from './components/MovieCard.js';
+import { Layout } from './components/Layout.js';
 
-const Home = new Component({
-    selector: 'main',
-    data: {
-        movies: 'Hello'
+const Home = new Component('main', {
+    state: {
+        counter: 0
     },
     template: (props) => {
         //language=HTML
         return `
             <div>
-                ${
-                        props.movies.map(movie => {
-                            return MovieCard;
-                        })
-                }
+                Hello
             </div>
         `;
     }
 });
 
-Home.render();
+
+Layout.state.content = Home.render().innerHTML;
+Layout.render();

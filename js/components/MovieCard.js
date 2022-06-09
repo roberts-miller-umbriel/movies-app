@@ -1,7 +1,8 @@
 import { Component } from '../Component.js';
 
-export const MovieCard = new Component({
-    data: {
+
+export const MovieCard = new Component('main', {
+    state: {
         movie: {}
     },
     template: (props) => {

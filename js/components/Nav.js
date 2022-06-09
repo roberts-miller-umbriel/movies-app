@@ -1,30 +1,22 @@
-import { htmlToElement } from '../utils.js';
+import { Component } from '../Component.js';
 
-// Reusable Nav Element
-const Nav = () => {
-    //language=HTML
-    return htmlToElement(`
-        <nav class="navbar">
-            <a href="/movies-app">Home</a>
-            <a href="/movies-app/my_movie_list.html">My List</a>
-            <!--<div class="dropdown">-->
-            <!--    <button class="dropbtn">Genre-->
-            <!--        <i class="fa fa-caret-down"></i>-->
-            <!--    </button>-->
-            <!--    <div class="dropdown-content">-->
-            <!--        <a href="#">Popular</a>-->
-            <!--        <a href="#">Horror</a>-->
-            <!--        <a href="#">Animation</a>-->
-            <!--    </div>-->
-            <!--</div>-->
-            <h1 class="main-title">The Movie Depot</h1>
-            <form id="movie-search">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </nav>
-    `);
-};
+export const Nav = new Component('body', {
+        state: {
+            title: 'The Movie Depot',
+        },
+        //language=HTML
+        template: (props) =>
+            `
+                <nav class="navbar">
+                    <a href="/movies-app">Home</a>
+                    <a href="/movies-app/my_movie_list.html">My List</a>
 
-// Inject the Nav to the start of the body
-document.body.prepend(Nav());
+                    <h1 class="main-title">${props.title}</h1>
+                    <form id="movie-search">
+                        <input type="text" placeholder="Search.." name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </nav>`
+    }
+);
+
