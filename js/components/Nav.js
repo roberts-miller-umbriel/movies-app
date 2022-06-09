@@ -7,16 +7,16 @@ const Nav = () => {
         <nav class="navbar">
             <a href="/movies-app">Home</a>
             <a href="/movies-app/my_movie_list.html">My List</a>
-            <div class="dropdown">
-                <button class="dropbtn">Genre
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="#">Popular</a>
-                    <a href="#">Horror</a>
-                    <a href="#">Animation</a>
-                </div>
-            </div>
+            <!--<div class="dropdown">-->
+            <!--    <button class="dropbtn">Genre-->
+            <!--        <i class="fa fa-caret-down"></i>-->
+            <!--    </button>-->
+            <!--    <div class="dropdown-content">-->
+            <!--        <a href="#">Popular</a>-->
+            <!--        <a href="#">Horror</a>-->
+            <!--        <a href="#">Animation</a>-->
+            <!--    </div>-->
+            <!--</div>-->
             <h1 class="main-title">The Movie Depot</h1>
             <form id="movie-search">
                 <input type="text" placeholder="Search.." name="search">
