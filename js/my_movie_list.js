@@ -45,12 +45,15 @@ document.querySelector('#add-movie-form')
 const loadingMsg = LoadingMessage();
 loadingMsg.classList.remove('hidden');
 document.body.append(loadingMsg);
+document.body.style.overflow = 'hidden';
 
 // Pull all custom movies from the json-server then render them all
 CUSTOM_MOVIE_LIST.getMovies()
     .then(movies => {
         setTimeout(() => {
             loadingMsg.animate({ opacity: 0, visibility: 'hidden' }, { duration: 500, fill: 'forwards' });
+            document.body.style.overflow = 'scroll';
+
 
         }, 3000);
         for (const movie of movies) {
