@@ -1,47 +1,53 @@
 h1 {
-    margin: 20px;
+	margin: 20px;
 }
 
 #search-movie-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 25%;
-    height: 15em;
-    background-image: url("/img/searchbackground.jpg");
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 25%;
+	height: 15em;
+	background-image: url("/img/searchbackground.jpg");
+	margin-bottom: 1rem;
 }
 
 #search-movie-container h2 {
-    padding: 1em;
+	padding: 1em;
 }
 
 #movie-query {
-    height: 3em;
-    width: 100%;
-    margin-bottom: 1em;
+	height: 3em;
+	width: 100%;
+	margin-bottom: 1em;
 }
 
 #add-movie-form .add-btn {
-    height: 3em;
-    width: 50%;
-    padding: 10px;
-    background: #290E01;
-    color: white;
-    font-size: 14px;
-    border: 1px solid grey;
-    border-left: none; /* Prevent double borders */
-    cursor: pointer;
+	height: 3em;
+	width: 50%;
+	padding: 10px;
+	background: #290E01;
+	color: white;
+	font-size: 14px;
+	border: 1px solid grey;
+	border-left: none; /* Prevent double borders */
+	cursor: pointer;
 }
 
 #add-movie-form .add-btn:hover {
-    background: #BE4900;
+	background: #BE4900;
 }
 
 #icon-pills {
-    display: flex;
-    font-size: 20px;
+	display: flex;
+	font-size: 20px;
 }
 
 #icon-pills i {
-    padding: 0.5em;
+	padding: 0.5em;
+}
+
+#movie-list-container {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
 }

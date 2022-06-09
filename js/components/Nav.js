@@ -1,6 +1,8 @@
+import { htmlToElement } from '../utils.js';
+
 const Nav = () => {
     //language=HTML
-    return `
+    return htmlToElement(`
         <nav class="navbar">
             <a href="/movies-app">Home</a>
             <a href="/movies-app/my_movie_list.html">My List</a>
@@ -20,8 +22,8 @@ const Nav = () => {
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </nav>
-    `;
+    `);
 };
 
 
-document.write(Nav());
+document.body.prepend(Nav());
