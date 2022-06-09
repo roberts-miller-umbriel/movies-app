@@ -43,9 +43,9 @@ document.querySelector('#add-movie-form')
     });
 
 const loadingMsg = LoadingMessage();
-loadingMsg.classList.remove('hidden');
+// loadingMsg.classList.remove('hidden');
 document.body.append(loadingMsg);
-document.body.style.overflow = 'hidden';
+// document.body.style.overflow = 'hidden';
 
 // Pull all custom movies from the json-server then render them all
 CUSTOM_MOVIE_LIST.getMovies()

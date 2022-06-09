@@ -66,10 +66,46 @@ export const MovieCard = (movie, editable = false, customId) => {
                 })
                 .catch(e => console.error(e));
         });
+
+    const editCard = MovieCardEdit(card, customId);
+    card.appendChild(editCard);
+
+    card.querySelector('.movie-edit-controls .edit-btn')
+        .addEventListener('click', (e) => {
+            e.stopPropagation();
+            editCard.classList.toggle('hidden');
+        });
+
     // Event listener to change the modal when the card is clicked
     card.addEventListener('click', (e) => {
         changeSearchModal(movie);
     });
 
     return card;
+};
+
+export const MovieCardEdit = (parent, id) => {
+    const element = htmlToElement(`
+        <div class="movie-edit hidden">
+            <form>
+                <input type="text">
+                <button>Change Movie</button>
+            </form>
+        </div>
+    `);
+    element.addEventListener('click', (e) => e.stopPropagation());
+    element.querySelector('form')
+        .addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log(id);
+            TMDB.searchMovie(e.target.querySelector('input').value)
+                .then(movie => {
+                    CUSTOM_MOVIE_LIST.updateMovie(id, { tmdbId: movie.id, userRating: 10 })
+                        .then(data => data);
+                });
+        });
+
+
+    //language=HTML
+    return element;
 };

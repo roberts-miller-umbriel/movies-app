@@ -71,5 +71,17 @@ export const CUSTOM_MOVIE_LIST = {
             .then(res => res.json())
             .then(movies => movies)
             .catch(error => console.error(error));
+    },
+    updateMovie: (id, { tmdbId, userRating }) => {
+        return fetch(`${CUSTOM_MOVIE_LIST.API_URL}/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ tmdbId, userRating })
+        })
+            .then(res => res.json())
+            .then(movie => movie)
+            .catch(error => console.error(error));
     }
 };

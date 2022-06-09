@@ -159,8 +159,15 @@ input {
 
 }
 
+
 .movie-card:hover {
 	cursor: pointer;
+}
+
+.movie-card .movie-edit {
+	position: absolute;
+	z-index: 5;
+
 }
 
 #movies-container .movie-card:hover {
