@@ -9,6 +9,7 @@ h1 {
 	width: 25%;
 	height: 15em;
 	background-image: url("/img/searchbackground.jpg");
+	margin-bottom: 1rem;
 }
 
 #search-movie-container h2 {

@@ -1,5 +1,5 @@
-import { animate, htmlToElement } from '../utils.js';
-import { changeSearchModal } from '../main.js';
+import { htmlToElement } from '../utils.js';
+import { changeSearchModal } from '../components/SearchModal.js';
 import { CUSTOM_MOVIE_LIST, TMDB } from '../api.js';
 
 export const GenreColumn = (movies, label) => {

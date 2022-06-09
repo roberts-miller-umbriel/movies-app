@@ -1,4 +1,4 @@
-import { htmlToElement } from '../utils.js';
+import { animate, htmlToElement } from '../utils.js';
 import { TMDB } from '../api.js';
 
 export const SearchModal = (movie) => {
@@ -21,3 +21,23 @@ export const SearchModal = (movie) => {
     `);
 
 };
+
+export const changeSearchModal = (movie) => {
+    const modal = document.querySelector('#search-modal');
+    const newModal = SearchModal(movie);
+    document.querySelector('body').style.overflowY = 'hidden';
+    modal.replaceWith(newModal);
+
+
+    newModal.querySelector('.close-btn')
+        .addEventListener('click', () => {
+            document.querySelector('body').style.overflowY = 'unset';
+            closeSearchModal();
+        });
+};
+export const closeSearchModal = () => {
+    const modal = document.querySelector('#search-modal');
+    animate(modal, { opacity: 0, visibility: 'hidden' }, 500);
+};
+
+document.body.innerHTML += '<div id="search-modal" class="hidden"></div>';

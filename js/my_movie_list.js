@@ -1,12 +1,6 @@
 import { MovieCard } from './components/GenreColumn.js';
 import { CUSTOM_MOVIE_LIST, TMDB } from './api.js';
 
-const STATE = {
-    setCustomMovies: (movies) => {
-
-    }
-};
-
 
 const renderCustomMovies = (movies) => {
     for (const movie of movies) {

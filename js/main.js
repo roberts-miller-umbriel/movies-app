@@ -1,26 +1,8 @@
 import { GenreColumn } from './components/GenreColumn.js';
-import { SearchModal } from './components/SearchModal.js';
-import { animate, capitalizeString } from './utils.js';
+import { capitalizeString } from './utils.js';
 import { TMDB } from './api.js';
+import { changeSearchModal } from './components/SearchModal.js';
 
-
-export const changeSearchModal = (movie) => {
-    const modal = document.querySelector('#search-modal');
-    const newModal = SearchModal(movie);
-    document.querySelector('body').style.overflowY = 'hidden';
-    modal.replaceWith(newModal);
-
-
-    newModal.querySelector('.close-btn')
-        .addEventListener('click', () => {
-            document.querySelector('body').style.overflowY = 'unset';
-            closeSearchModal();
-        });
-};
-export const closeSearchModal = () => {
-    const modal = document.querySelector('#search-modal');
-    animate(modal, { opacity: 0, visibility: 'hidden' }, 500);
-};
 
 // Component Rendering
 const renderMovieCarousel = (movies, carouselLabel) => {
@@ -52,4 +34,3 @@ document.querySelector('#movie-search')
 
     });
 
-document.body.innerHTML += '<div id="search-modal" class="hidden"></div>';
