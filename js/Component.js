@@ -1,54 +1,42 @@
 export class Component {
+
     constructor(parentNode, opts) {
-        this.componentId = Math.floor((Date.now() * Math.random()) / 10000);
-        this.parentNode = parentNode ? parentNode : null;
-        this.state = opts ? opts.state : null;
-        this.content = opts ? opts.content : null;
+        const _componentId = generateComponentId();
+        this.getComponentId = () => _componentId;
+        this.parentNode = parentNode ? parentNode : document.querySelector('body');
+        this.state = opts.state;
+        this.template = opts.template;
     }
 
     render() {
-        let elem = document.querySelector(`[data-component-id="${this.componentId}"]`);
-        if (!elem) {
-            if (typeof this.parentNode.nodeType === 'string') {
-                console.log(this.parentNode);
-                const newEl = document.createElement(this.parentNode.nodeType);
-                const elId = this.parentNode.id;
-                const elClasses = this.parentNode.classes;
-                if (elId) newEl.id = elId;
-                if (elClasses) {
-                    for (const el of this.parentNode.classes) {
-                        newEl.classList.add(el);
-                    }
-                }
-                elem = newEl;
+        const elem = document.querySelector(`[data-component-id="${this.getComponentId()}"]`);
+        const node = htmlToNode(this.template(this.state));
+        node.dataset.componentId = this.getComponentId();
 
-            } else {
-                elem = this.parentNode;
-            }
+        // If elem already exists, replace it with the new one
+        if (elem) elem.replaceWith(node);
+        // Else, append to the parent node before script tags
+        else this.parentNode.insertBefore(node, this.parentNode.querySelector('script'));
+
+        return node;
+    }
+
+
+    setState(obj) {
+        for (const key in obj) {
+            this.state[key] = obj[key];
         }
-
-
-        if (!elem) return;
-        const template = (typeof this.content === 'function' ? this.content(this.state) : this.content);
-
-        if (['string', 'number'].indexOf(typeof template) === -1) return;
-
-        if (elem.innerHTML === template) return;
-        elem.innerHTML = template;
-        elem.dataset.componentId = String(this.componentId);
-
-        let event = new CustomEvent('render', {
-            bubbles: true
-        });
-        elem.dispatchEvent(event);
-        return elem;
+        this.render();
     }
 
 
-    static sanitize(str) {
-        const temp = document.createElement('div');
-        temp.textContent = str;
-        return temp.innerHTML;
-    }
 }
 
+const htmlToNode = (strOfHTML) => {
+    const temp = document.createElement('template');
+    temp.innerHTML = strOfHTML.trim();
+    return temp.content.firstChild;
+};
+
+const generateComponentId = () => [Math.random(), Math.random(), Math.random()].map(num =>
+    Math.floor(num * Date.now() / 100000000)).join('-');

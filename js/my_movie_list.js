@@ -3,17 +3,16 @@ import { Layout } from './components/Layout.js';
 
 const MyMovieList = new Component({ nodeType: 'div' }, {
     state: {
-        title: 'Testing'
+        title: 'a'
     },
     content: (props) => `<h1>${props.title}</h1>`
 });
 
 const App = new Component(document.querySelector('main'), {
     state: {},
-    content: (props) => Index.render().outerHTML
+    content: (props) => MyMovieList.render().outerHTML
 });
 
 
-Layout.state.setMainContent(App.render());
-Layout.render();
+
 

@@ -1,19 +1,20 @@
-import { Component } from './Component.js';
+import './components/Layout.js';
 import { Layout } from './components/Layout.js';
+import { Component } from './Component.js';
+import { Nav } from './components/Nav.js';
 
-const Index = new Component({ nodeType: 'div' }, {
+export const Main = new Component(null, {
     state: {
-        title: 'Testing'
+        title: 'Hello'
     },
-    content: (props) => `<h1>${props.title}</h1>`
+    //language=HTML
+    template: (props) => `
+        <h1>${props.title}</h1>
+    `
 });
 
-const App = new Component(document.querySelector('main'), {
-    state: {},
-    content: (props) => Index.render().outerHTML
-});
+
+Layout(Nav, Main).render();
 
 
-Layout.state.setMainContent(App.render());
-Layout.render();
 

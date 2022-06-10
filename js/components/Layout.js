@@ -1,16 +1,10 @@
-import { Component } from '../Component.js';
-import { Nav } from './Nav.js';
-
-export const Layout = new Component(document.body, {
-    state: {
-        content: '',
-        setMainContent: function (component) {
-            this.content = component.outerHTML;
+export const Layout = (Nav, MainContent, Footer) => {
+    return {
+        render: () => {
+            if (Nav) Nav.render();
+            if (MainContent) MainContent.render();
+            if (Footer) Footer.render();
         }
-    },
-    //language=HTML
-    content: (props) => `
-        ${Nav.render().outerHTML}
-        ${props.content}
-    `
-});
+    };
+};
+
