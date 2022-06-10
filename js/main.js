@@ -1,20 +1,19 @@
 import { Component } from './Component.js';
 import { Layout } from './components/Layout.js';
 
-const Home = new Component('main', {
+const Index = new Component({ nodeType: 'div' }, {
     state: {
-        counter: 0
+        title: 'Testing'
     },
-    template: (props) => {
-        //language=HTML
-        return `
-            <div>
-                Hello
-            </div>
-        `;
-    }
+    content: (props) => `<h1>${props.title}</h1>`
+});
+
+const App = new Component(document.querySelector('main'), {
+    state: {},
+    content: (props) => Index.render().outerHTML
 });
 
 
-Layout.state.content = Home.render().innerHTML;
+Layout.state.setMainContent(App.render());
 Layout.render();
+
