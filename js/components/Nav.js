@@ -1,6 +1,6 @@
 import { Component } from '../Component.js';
 
-export const Nav = new Component(null, {
+export const Nav = () => new Component(null, {
     //language=HTML
     template: (props) => `
         <nav class="navbar">
@@ -13,12 +13,6 @@ export const Nav = new Component(null, {
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </nav>`
-});
-
-export const TestComponent = new Component(null, {
-    //language=HTML
-    template: (props) => `
-        <h1>Hi</h1>`
 });
 
 
