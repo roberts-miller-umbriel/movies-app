@@ -10,7 +10,7 @@ const MyMovieList = new Component({ nodeType: 'div' }, {
 
 const App = new Component(document.querySelector('main'), {
     state: {},
-    content: (props) => MyMovieList.render().outerHTML
+    content: (props) => MyMovieList.updateTree().outerHTML
 });
 
 

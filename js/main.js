@@ -1,4 +1,3 @@
-const Main = new Component().render();
-
+import './components/GenreColumn.js';
 
 
