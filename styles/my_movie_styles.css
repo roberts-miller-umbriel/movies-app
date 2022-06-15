@@ -21,7 +21,7 @@ h1 {
 #movie-query {
 	height: 2.5rem;
 	width: 100%;
-		/*margin-bottom: 1em;*/
+	/*margin-bottom: 1em;*/
 }
 
 #search-movie-container form {
@@ -54,7 +54,3 @@ h1 {
 	padding: 0.5em;
 }
 
-#movie-list-container {
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-}
