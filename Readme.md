@@ -1,7 +1,8 @@
 # Movies App
 
 ![Desktop Demo](./readme/img/movies_app_demo.gif)
-Movie app [@ScottRoberts70](https://github.com/ScottRoberts70) and I built as part of a paired programming project
+Movie app built by [@ScottRoberts70](https://github.com/ScottRoberts70)
+and [@DaltonKyeMiller](https://github.com/daltonkyemiller)
 
 #### Built With
 
