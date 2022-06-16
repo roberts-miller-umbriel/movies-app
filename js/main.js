@@ -1,36 +1,15 @@
-import { GenreColumn } from './components/GenreColumn.js';
-import { capitalizeString } from './utils.js';
-import { TMDB } from './api.js';
-import { changeSearchModal } from './components/SearchModal.js';
+import './components/Nav.js';
+import './components/GenreColumn.js';
+
+export const LOADING_MODAL = document.querySelector('#loading-msg');
 
 
-// Component Rendering
-const renderMovieCarousel = (movies, carouselLabel) => {
-    const moviesContainer = document.querySelector('#movies-container');
-    moviesContainer.appendChild(GenreColumn(movies, capitalizeString(carouselLabel)));
+const loadingMsg = LOADING_MODAL.querySelector('.msg');
+const loadingAnim = (time) => {
+    loadingMsg.innerHTML = '...' + '.'.repeat(time / 500 % 10);
+    if (LOADING_MODAL.classList.contains('closed')) return window.cancelAnimationFrame(load);
+    load = window.requestAnimationFrame(loadingAnim);
 };
+let load = window.requestAnimationFrame(loadingAnim);
 
-
-TMDB.getPopularMovies()
-    .then(movies => renderMovieCarousel(movies, 'Popular'))
-    .then(() => {
-        const genresToList = ['horror', 'animation', 'adventure'];
-        for (const genre of genresToList) {
-            TMDB.getMoviesByGenre(genre)
-                .then(movies => renderMovieCarousel(movies, genre));
-        }
-    });
-
-
-document.querySelector('#movie-search')
-    .addEventListener('submit', (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const text = form.querySelector('input[type="text"]').value;
-        TMDB.searchMovie(text)
-            .then(results => {
-                changeSearchModal(results);
-            });
-
-    });
 

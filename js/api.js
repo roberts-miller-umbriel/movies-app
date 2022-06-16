@@ -36,6 +36,12 @@ export const TMDB = {
             .then(res => res.json())
             .then(data => data)
             .catch(error => console.error(error));
+    },
+    getMovieCast: (id) => {
+        return fetch(`${TMDB.API_URL}/movie/${id}/credits?api_key=${MOVIE_DB_API_KEY}`)
+            .then(res => res.json())
+            .then(data => data)
+            .catch(error => console.error(error));
     }
 };
 

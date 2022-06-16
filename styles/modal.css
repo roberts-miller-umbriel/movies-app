@@ -12,12 +12,9 @@
 	display: flex;
 }
 
-#search-modal .close-btn {
-
+#search-modal button {
 	position: absolute;
 	z-index: 5;
-	right: 0;
-	top: 0;
 	border: none;
 	background-color: #333;
 	color: white;
@@ -26,9 +23,19 @@
 	transition: all 500ms;
 }
 
-#search-modal .close-btn:hover {
+#search-modal button:hover {
 	background-color: #BE4900;
 
+}
+
+#search-modal .close-btn {
+	right: 0;
+	top: 0;
+}
+
+#search-modal .custom-movie-btn {
+	bottom: 0;
+	left: 0;
 }
 
 #search-modal .info {

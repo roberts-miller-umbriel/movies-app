@@ -1,6 +1,5 @@
 @import "modal.css";
 @import "my_movie_styles.css";
-@import "loading_msg.css";
 
 *,
 *::before,
@@ -28,17 +27,48 @@ body, html {
 	padding: 1rem;
 }
 
-.navbar {
+
+#loading-msg {
+	position: fixed;
+	display: flex;
+	background-color: black;
+	align-items: center;
+	justify-content: center;
+	inset: 0;
+	opacity: 1;
+	transition: all 500ms !important;
+
+}
+
+#loading-msg.closed {
+	opacity: 0;
+	visibility: hidden;
+}
+
+#loading-msg .msg::after {
+	content: attr(data-dots);
+}
+
+nav {
 	position: relative;
 	overflow: hidden;
 	display: flex;
-	padding: 1rem;
-	background-image: url("/img/Film-Header.jpg");
-	background-position: center;
+	isolation: isolate;
+	/*background-image: url("/img/Film-Header.jpg");*/
+	/*background-position: center;*/
 	height: 200px;
 }
 
-.navbar a {
+nav img {
+	filter: contrast(125%) blur(5px);
+	position: absolute;
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-position: center;
+}
+
+nav a {
 	float: left;
 	font-size: 20px;
 	color: white;
@@ -50,54 +80,11 @@ nav > * {
 	margin-right: 10px;
 }
 
-.dropdown {
-	overflow: hidden;
-}
-
-.dropdown .dropbtn {
-	font-size: 20px;
-	border: none;
-	outline: none;
-	color: white;
-	background-color: inherit;
-	font-family: inherit;
-	margin: 0;
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn {
-	text-shadow: 5px 5px 5px #EE9501;
-}
-
-.dropdown-content {
-	display: none;
-	position: absolute;
-	min-width: 120px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-.dropdown-content a {
-	float: none;
-	color: white;
-	padding: 3px 8px;
-	text-decoration: none;
-	display: block;
-	text-align: left;
-}
-
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-.twitterIcon {
-	float: right;
-}
-
-.igIcon {
-	float: right;
-}
 
 #movie-search {
+	margin: 1rem;
+
+	z-index: 2;
 	display: flex;
 	align-items: center;
 	height: 5vh;
@@ -140,11 +127,6 @@ input {
 
 .genre-container h1 {
 	margin: .5rem 0;
-}
-
-.genre-container {
-
-
 }
 
 .movie-card {
@@ -190,7 +172,9 @@ input {
 }
 
 .hidden {
-	display: none !important;
+	opacity: 0;
+	visibility: hidden !important;
+	/*display: none !important;*/
 }
 
 
