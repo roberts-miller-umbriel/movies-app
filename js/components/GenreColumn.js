@@ -1,5 +1,6 @@
 import { CUSTOM_MOVIE_LIST, TMDB } from '../api.js';
 import { changeSearchModal } from './SearchModal.js';
+import { LOADING_MODAL } from '../main.js';
 
 export const MovieCard = (movie) => {
     //language=HTML
@@ -32,12 +33,13 @@ export const GenreColumn = (movies, label) => {
 const genresToShow = ['Action', 'Horror', 'Comedy', 'Thriller'];
 const genrePromises = genresToShow.map((genre) => TMDB.getMoviesByGenre(genre)
     .then(movies => {
+        const twentyMovies = movies.slice(0, 20);
         document.querySelector('#movie-carousels-container')
-            .innerHTML += GenreColumn(movies, genre);
+            .innerHTML += GenreColumn(twentyMovies, genre);
     })
 );
 
-const customMoviePromises = CUSTOM_MOVIE_LIST.getMovies().then(movies => {
+const customMoviePromise = CUSTOM_MOVIE_LIST.getMovies().then(movies => {
     const movieProms = movies.map(movie => {
         return TMDB.getMovieById(movie.tmdbId).then(movie => movie);
     });
@@ -51,7 +53,7 @@ const customMoviePromises = CUSTOM_MOVIE_LIST.getMovies().then(movies => {
 export const FLICKITIES = [];
 
 // Wait for all movies to be loaded in then setup flickity
-Promise.all([...genrePromises, customMoviePromises]).then(() => {
+Promise.all([...genrePromises, customMoviePromise]).then(() => {
     // Create flickity instance on our carousel container
     const carousels = document.querySelectorAll('.genre-carousel');
     console.log(carousels);
@@ -60,7 +62,8 @@ Promise.all([...genrePromises, customMoviePromises]).then(() => {
             wrapAround: true,
             pageDots: false,
             cellAlign: 'left',
-            contain: true
+            contain: true,
+            // freeScroll: true
         });
         FLICKITIES.push(flick);
 
@@ -73,5 +76,9 @@ Promise.all([...genrePromises, customMoviePromises]).then(() => {
 
         });
     }
+    setTimeout(() => {
+        LOADING_MODAL.classList.add('closed');
+
+    }, 1000);
 });
 
